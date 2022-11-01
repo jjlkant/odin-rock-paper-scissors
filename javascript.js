@@ -57,4 +57,11 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound("rock", getComputerChoice()))
+function game() {
+    for (let i=0; i < 5; i++) {
+        console.log(playRound(prompt("Please enter your weapon of choice"), getComputerChoice()))
+    }
+}
+
+game()
+
