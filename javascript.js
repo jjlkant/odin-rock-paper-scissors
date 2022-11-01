@@ -14,3 +14,47 @@ function getComputerChoice() {
     }
 }
 
+function capitalize(word) {
+    return word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase()
+}
+
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection.toLowerCase()
+    computerSelection = computerSelection.toLowerCase()
+    let win, lose = false;
+    if (playerSelection == "rock") {
+        if (computerSelection == "scissors") {
+            win = true
+        }
+        if (computerSelection == "paper") {
+            lose = true
+        }
+    }
+    if (playerSelection == "paper") {
+        if (computerSelection == "rock") {
+            win = true
+        }
+        if (computerSelection == "scissors") {
+            lose = true
+        }
+    }
+    if (playerSelection == "scissors") {
+        if (computerSelection == "paper") {
+            win = true
+        }
+        if (computerSelection == "rock") {
+            lose = true
+        }
+    }
+    if (win) {
+        return "You Win! " + capitalize(playerSelection) + " beats " + capitalize(computerSelection)
+    } else {
+        if (lose) {
+            return "You Lose! " + capitalize(computerSelection) + " beats " + capitalize(playerSelection)
+        } else {
+            return "It's a tie..."
+        }
+    }
+}
+
+console.log(playRound("rock", getComputerChoice()))
