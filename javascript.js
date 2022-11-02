@@ -18,48 +18,44 @@ function capitalize(word) {
     return word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase()
 }
 
-function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase()
-    computerSelection = computerSelection.toLowerCase()
-    let win, lose = false;
-    if (playerSelection == "rock") {
-        if (computerSelection == "scissors") {
-            win = true
+function playRound(playerChoice, computerChoice) {
+    playerChoice = playerChoice.toLowerCase()
+    computerChoice = computerChoice.toLowerCase()
+    let result = 0;
+    if (playerChoice == "rock") {
+        if (computerChoice == "scissors") {
+            result = 1
         }
-        if (computerSelection == "paper") {
-            lose = true
-        }
-    }
-    if (playerSelection == "paper") {
-        if (computerSelection == "rock") {
-            win = true
-        }
-        if (computerSelection == "scissors") {
-            lose = true
+        if (computerChoice == "paper") {
+            result = -1
         }
     }
-    if (playerSelection == "scissors") {
-        if (computerSelection == "paper") {
-            win = true
+    if (playerChoice == "paper") {
+        if (computerChoice == "rock") {
+            result = 1
         }
-        if (computerSelection == "rock") {
-            lose = true
-        }
-    }
-    if (win) {
-        return "You Win! " + capitalize(playerSelection) + " beats " + capitalize(computerSelection)
-    } else {
-        if (lose) {
-            return "You Lose! " + capitalize(computerSelection) + " beats " + capitalize(playerSelection)
-        } else {
-            return "It's a tie..."
+        if (computerChoice == "scissors") {
+            result = -1
         }
     }
+    if (playerChoice == "scissors") {
+        if (computerChoice == "paper") {
+            result = 1
+        }
+        if (computerChoice == "rock") {
+            result = -1
+        }
+    }
+    return result
 }
 
 function game() {
     for (let i=0; i < 5; i++) {
-        console.log(playRound(prompt("Please enter your weapon of choice"), getComputerChoice()))
+        let playerChoice, computerChoice, result;
+        playerChoice = prompt("Please enter your weapon of choice");
+        computerChoice = getComputerChoice()
+        result = playRound(playerChoice, computerChoice)
+        console.log(result)
     }
 }
 
