@@ -49,13 +49,37 @@ function playRound(playerChoice, computerChoice) {
     return result
 }
 
+function logRoundResult(result, playerChoice, computerChoice) {
+    if (result == 0) {
+        console.log("It's a tie..");
+    } else {
+        if (result == 1) {
+            console.log("You Win! " + capitalize(playerChoice) + " beats " + capitalize(computerChoice));
+        }
+        if (result == -1) {
+            console.log("You Lose! " + capitalize(computerChoice) + " beats " + capitalize(playerChoice));
+        }
+    }
+}
+
 function game() {
+    let sum = 0;
     for (let i=0; i < 5; i++) {
         let playerChoice, computerChoice, result;
         playerChoice = prompt("Please enter your weapon of choice");
-        computerChoice = getComputerChoice()
-        result = playRound(playerChoice, computerChoice)
-        console.log(result)
+        computerChoice = getComputerChoice();
+        result = playRound(playerChoice, computerChoice);
+        logRoundResult(result, playerChoice, computerChoice);
+        sum += result;
+    }
+    if (sum > 0) {
+        console.log("You've won!");
+    } else {
+        if (sum < 0) {
+            console.log("You've lost...");
+        } else {
+            console.log("It was a tie. Better luck next time!")
+        }
     }
 }
 
